@@ -22,16 +22,18 @@ Anyway, since there was interest in the code, I'm dumping it up here as CC0, but
 
   1. This code contains edits to the OVR SDK, and it may not work in a future release (not to mention, this is probably not a good practice).
 
-  2. The quality of the code changes is pretty abysmal.  Apologies for the dumpster fire.
+  2. The code is a bit of a dumpster fire.  Apologies.
 
   3. Even with my changes, it's still very fucking glitchy (check out the APK first -- it's not awesome -- but maybe someone can take what I did and improve further?).
 
   4. Nothing is this project has really been optimized for mobile, it was just an experiment.  That being said, it hits 72fps on the Quest for me, but I wouldn't be surprised if the CPU/GPU were both in 4/4 the whole time. 😅
 
-### "License"
-Any changes that I made to the code I release under the CC0 where possible, otherwise please refer to the original header text in the source code (which contains a link to the Oculus / Facebook developer agreement).
+  5. Oh yeah... I broke the hand material somehow? 🤐 -- So I replaced it with a regular white one -- don't do that, it's bad because your hands don't turn blue when you make the Oculus gesture. (It still works, and the icon shows up, but it's annoying.)
 
-I would like to note that if you use this code in your own project, or you learn anything useful from it, I'd love a shout out (even a "special thanks", or you know free review key or a big sack of money, or whatever 😉).
+### "License"
+Any changes that I made to the code I release under the CC0 (where possible), otherwise please refer to the original header text in the source code (which contains a link to the Oculus / Facebook developer agreement).
+
+I would like to note that if you use this code in your own project, or you learn anything useful from it, I'd love a shout out (even a "special thanks", or you know free review key... or a big sack of money, or whatever's convenient. 😉).
 
 But yeah, as this is being released as CC0, none of that is legally required, it's just a nice way to say thanks. 🙂
 
