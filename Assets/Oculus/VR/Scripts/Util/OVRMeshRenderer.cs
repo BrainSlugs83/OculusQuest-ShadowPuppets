@@ -20,100 +20,92 @@ using UnityEngine;
 
 public class OVRMeshRenderer : MonoBehaviour
 {
-	public interface IOVRMeshRendererDataProvider
-	{
-		MeshRendererData GetMeshRendererData();
-	}
+    public interface IOVRMeshRendererDataProvider
+    {
+        MeshRendererData GetMeshRendererData();
+    }
 
-	public struct MeshRendererData
-	{
-		public bool IsDataValid { get; set; }
-		public bool IsDataHighConfidence { get; set; }
-	}
+    public struct MeshRendererData
+    {
+        public bool IsDataValid { get; set; }
+        public bool IsDataHighConfidence { get; set; }
+    }
 
-	[SerializeField]
-	private IOVRMeshRendererDataProvider _dataProvider;
-	[SerializeField]
-	private OVRMesh _ovrMesh;
-	[SerializeField]
-	private OVRSkeleton _ovrSkeleton;
+    [SerializeField]
+    private IOVRMeshRendererDataProvider _dataProvider;
+    [SerializeField]
+    private OVRMesh _ovrMesh;
+    [SerializeField]
+    private OVRSkeleton _ovrSkeleton;
 
-	private SkinnedMeshRenderer _skinnedMeshRenderer;
-	private bool _isInitialized;
+    private SkinnedMeshRenderer _skinnedMeshRenderer;
+    private bool _isInitialized;
 
-	private void Awake()
-	{
-		if (_dataProvider == null)
-		{
-			_dataProvider = GetComponent<IOVRMeshRendererDataProvider>();
-		}
+    private void Awake()
+    {
+        if (_dataProvider == null)
+        {
+            _dataProvider = GetComponent<IOVRMeshRendererDataProvider>();
+        }
 
-		if (_ovrMesh == null)
-		{
-			_ovrMesh = GetComponent<OVRMesh>();
-		}
+        if (_ovrMesh == null)
+        {
+            _ovrMesh = GetComponent<OVRMesh>();
+        }
 
-		if (_ovrSkeleton == null)
-		{
-			_ovrSkeleton = GetComponent<OVRSkeleton>();
-		}
-	}
+        if (_ovrSkeleton == null)
+        {
+            _ovrSkeleton = GetComponent<OVRSkeleton>();
+        }
+    }
 
-	private void Start()
-	{
-		if (_ovrMesh == null)
-		{
-			this.enabled = false;
-			return;
-		}
+    private void Start()
+    {
+        if (_ovrMesh == null)
+        {
+            this.enabled = false;
+            return;
+        }
 
-		Initialize();
-	}
+        Initialize();
+    }
 
-	private void Initialize()
-	{
-		_skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-		if (!_skinnedMeshRenderer)
-		{
-			_skinnedMeshRenderer = gameObject.AddComponent<SkinnedMeshRenderer>();
-		}
-		_skinnedMeshRenderer.sharedMesh = _ovrMesh.Mesh;
+    private void Initialize()
+    {
+        _skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        if (!_skinnedMeshRenderer)
+        {
+            _skinnedMeshRenderer = gameObject.AddComponent<SkinnedMeshRenderer>();
+        }
+        _skinnedMeshRenderer.sharedMesh = _ovrMesh.Mesh;
 
-		if (_ovrSkeleton != null)
-		{
-			int numSkinnableBones = _ovrSkeleton.GetCurrentNumSkinnableBones();
-			var bindPoses = new Matrix4x4[numSkinnableBones];
-			var bones = new Transform[numSkinnableBones];
-			var localToWorldMatrix = transform.localToWorldMatrix;
-			for (int i = 0; i < numSkinnableBones && i < _ovrSkeleton.Bones.Count; ++i)
-			{
-				bones[i] = _ovrSkeleton.Bones[i].Transform;
-				bindPoses[i] = _ovrSkeleton.BindPoses[i].Transform.worldToLocalMatrix * localToWorldMatrix;
-			}
-			_ovrMesh.Mesh.bindposes = bindPoses;
-			_skinnedMeshRenderer.bones = bones;
-			_skinnedMeshRenderer.updateWhenOffscreen = true;
-		}
+        if (_ovrSkeleton != null)
+        {
+            int numSkinnableBones = _ovrSkeleton.GetCurrentNumSkinnableBones();
+            var bindPoses = new Matrix4x4[numSkinnableBones];
+            var bones = new Transform[numSkinnableBones];
+            var localToWorldMatrix = transform.localToWorldMatrix;
+            for (int i = 0; i < numSkinnableBones && i < _ovrSkeleton.Bones.Count; ++i)
+            {
+                bones[i] = _ovrSkeleton.Bones[i].Transform;
+                bindPoses[i] = _ovrSkeleton.BindPoses[i].Transform.worldToLocalMatrix * localToWorldMatrix;
+            }
+            _ovrMesh.Mesh.bindposes = bindPoses;
+            _skinnedMeshRenderer.bones = bones;
+            _skinnedMeshRenderer.updateWhenOffscreen = true;
+        }
 
-		_isInitialized = true;
-	}
+        _isInitialized = true;
+    }
 
-	private void Update()
-	{
-		if (_isInitialized)
-		{
-			bool shouldRender = false;
-
-			if (_dataProvider != null)
-			{
-				//var data = _dataProvider.GetMeshRendererData();
-                shouldRender = true; // data.IsDataValid && data.IsDataHighConfidence;
-			}
-
-			if (_skinnedMeshRenderer != null && _skinnedMeshRenderer.enabled != shouldRender)
-			{
-				_skinnedMeshRenderer.enabled = shouldRender;
-			}
-		}
-	}
+    private void Update()
+    {
+        if (_isInitialized)
+        {
+            if (_dataProvider != null && _skinnedMeshRenderer != null && _skinnedMeshRenderer.enabled != true)
+            {
+                _skinnedMeshRenderer.enabled = true;
+            }
+        }
+    }
 }
