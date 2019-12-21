@@ -22,7 +22,7 @@ Anyway, since there was interest in the code, I'm dumping it up here as CC0, but
 
   1. This code contains edits to the OVR SDK, and it may not work in a future release (not to mention, this is probably not a good practice).
 
-  2. The code is a bit of a dumpster fire.  Apologies.
+  2. The code is a bit of a dumpster fire.  Apologies. -- Also the project may take a while to open the first time, as it's set to convert itself to Android when you first open it...
 
   3. Even with my changes, it's still very fucking glitchy (check out the APK first -- it's not awesome -- but maybe someone can take what I did and improve further?).
 
