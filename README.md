@@ -24,7 +24,7 @@ Anyway, since there was interest in the code, I'm dumping it up here as CC0, but
 
   2. The code is a bit of a dumpster fire.  Apologies. -- Also the project may take a while to open the first time, as it's set to convert itself to Android when you first open it...
 
-  3. Even with my changes, it's still very fucking glitchy (check out the APK first -- it's not awesome -- but maybe someone can take what I did and improve further?).
+  3. Even with my improvements, it's still very fucking glitchy (check out the [APK](https://github.com/BrainSlugs83/OculusQuest-ShadowPuppets/releases/tag/0.1) first -- it's not awesome -- but maybe someone can take what I did and improve it further? -- Really we need a way to get a floating point confidence level to do anything meaningful, not just a boolean).
 
   4. Nothing is this project has really been optimized for mobile, it was just an experiment.  That being said, it hits 72fps on the Quest for me, but I wouldn't be surprised if the CPU/GPU were both in 4/4 the whole time. 😅
 
